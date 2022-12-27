@@ -10,6 +10,7 @@ function Navbar() {
             <Link to='/'>Home</Link>
             <Link to='/cart'>Cart</Link>
             </div >
+            <div>Cart Item: 0 </div>
         </div>
         </>
     )

@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {Fragment} from 'react'
+import Products from '../compontents/Products'
 
 function Home() {
   return (
-    <div>Home</div>
+    <Fragment>
+    <div>This is our Redux toolket App.</div>
+    <Products />
+    </Fragment>
   )
 }
 
