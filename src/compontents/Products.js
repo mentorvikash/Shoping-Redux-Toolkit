@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import {add} from '../store/cartSlice'
 
 function Products() {
     const [products, setProducts] = useState()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const getProductData = async () => {
@@ -11,6 +14,10 @@ function Products() {
         }
         getProductData()
     }, [])
+
+    let handleCartItem = (product) => dispatch(add(product))
+    
+
     // products && console.log(products);
     return (
         <div className='flex justify-between flex-wrap'>
@@ -20,7 +27,10 @@ function Products() {
                         <img className='h-36 w-36' src={product.image} alt="" /><br />
                         <h4 className='self-center'>{product.title.slice(20)}</h4>
                         <h5>{product.price}</h5>
-                        <button>Add to Cart</button>
+                        <button
+                            className='bg-slate-600 text-white p-1'
+                            onClick={() => handleCartItem(product)}
+                        >Add to Cart</button>
                     </div>
                 ))
             }
