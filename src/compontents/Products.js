@@ -23,7 +23,7 @@ function Products() {
         <div className='flex justify-between flex-wrap'>
             {
                 products && products.map((product) => (
-                    <div className='eachProduct p-3 m-3 ' key={product.id}>
+                    <div className='eachProduct p-3 m-3' key={product.id}>
                         <img className='h-36 w-36' src={product.image} alt="" /><br />
                         <h4 className='self-center'>{product.title.slice(20)}</h4>
                         <h5>{product.price}</h5>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function Navbar() {
+    // here we subscribe the cart state => as data change will get inform here.
     const cartItem = useSelector((state)=> state.cart) 
     return (
         <>
