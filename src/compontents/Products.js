@@ -27,6 +27,10 @@ function Products() {
         return <h3>LODING....</h3>
     }
 
+    if (status == STATUS.ERROR){
+        return <h3 className='text-red-700 '>Something Went Wrong</h3>
+    }
+
     // products && console.log(products);
     return (
         <div className='flex justify-between flex-wrap'>
