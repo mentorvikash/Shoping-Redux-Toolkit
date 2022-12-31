@@ -1,22 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import {add} from '../store/cartSlice'
+import { getProductDateApi } from '../store/productSlice'
+// import {product} from '../store/store'
+import { STATUS } from '../store/productSlice'
+import { useSelector } from 'react-redux'
 
 function Products() {
-    const [products, setProducts] = useState()
+    // const [products, setProducts] = useState()
     const dispatch = useDispatch()
+    const {data : products, status} = useSelector((state) => state.product)
 
     useEffect(() => {
-        const getProductData = async () => {
-            const response = await fetch('https://fakestoreapi.com/products');
-            const data = await response.json();
-            setProducts(data);
-        }
-        getProductData()
+        dispatch(getProductDateApi())
+        // const getProductData = async () => {
+        //     const response = await fetch('https://fakestoreapi.com/products');
+        //     const data = await response.json();
+        //     setProducts(data);
+        // }
+        // getProductData()
     }, [])
 
     let handleCartItem = (product) => dispatch(add(product))
     
+    if (status ==  STATUS.LODING){
+        return <h3>LODING....</h3>
+    }
 
     // products && console.log(products);
     return (
