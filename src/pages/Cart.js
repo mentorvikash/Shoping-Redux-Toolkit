@@ -5,6 +5,7 @@ import { remove } from '../store/cartSlice';
 
 
 function Cart() {
+  // --- Get all item in cart from redux store.
   const cartItems = useSelector(state => state.cart);
   const dispatch = useDispatch();
   const removeItem = (itemid) => {
@@ -13,6 +14,7 @@ function Cart() {
   return (
     <div className='CartItemMain'>
     {
+      // --- Display all cart item here
       cartItems.map((item) => (
         <div key={item.id}>
         <img src={item.image} alt='' className='w-24'/>
@@ -20,6 +22,7 @@ function Cart() {
         <div>{item.price}</div>
         <button 
         className='bg-orange-600 text-white p-3' 
+        // --- Remove cart item by product id
         onClick={()=> removeItem(item.id)}
         >
         Remove

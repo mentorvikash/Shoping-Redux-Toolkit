@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import {add} from '../store/cartSlice'
 import { getProductDateApi } from '../store/productSlice'
-// import {product} from '../store/store'
 import { STATUS } from '../store/productSlice'
+// To get all state value
 import { useSelector } from 'react-redux'
 
 function Products() {
-    // const [products, setProducts] = useState()
     const dispatch = useDispatch()
     const {data : products, status} = useSelector((state) => state.product)
 
     useEffect(() => {
+        // --- by using thunk middleware
+        
         dispatch(getProductDateApi())
+
+        // --- without using thunk middleware
         // const getProductData = async () => {
         //     const response = await fetch('https://fakestoreapi.com/products');
         //     const data = await response.json();
@@ -21,17 +24,20 @@ function Products() {
         // getProductData()
     }, [])
 
+    // dispatch action to add to cart
     let handleCartItem = (product) => dispatch(add(product))
     
+    // --- if loding what to display
     if (status ==  STATUS.LODING){
         return <h3>LODING....</h3>
     }
 
+    // --- if error what to display
     if (status == STATUS.ERROR){
         return <h3 className='text-red-700 '>Something Went Wrong</h3>
     }
 
-    // products && console.log(products);
+    // --- if we sucessesfully get data what to display
     return (
         <div className='flex justify-between flex-wrap'>
             {
